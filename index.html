@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html lang="en"> <head> 
+  <meta charset="UTF-8"> 
+  <title>Inventory SaaS</title> 
+  <link rel="stylesheet" href="style.css"> <!-- Chart.js --> 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- SheetJS --> 
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script> 
+</head> 
+<body> 
+  <div class="sidebar"> 
+    <h2>IMS</h2> 
+    <button id="btnDashboard">📊 Dashboard</button> 
+    <button id="btnAdd">➕ Add Stock</button> 
+    <button id="btnView">📦 Inventory</button> 
+  </div> 
+  <div class="main"> 
+    <div class="header"> 
+      <h1>Inventory Dashboard</h1> 
+      <img src="MSC logo.png" class="logo"> 
+    </div> <!-- Dashboard -->
+    <div id="dashboard" class="section">
+      <div class="cards"> <div class="card"> 
+        <h4>Total Products</h4> 
+        <p id="totalProducts">0</p> 
+      </div> 
+      <div class="card"> 
+        <h4>Low Stock</h4> 
+        <p id="lowStock">0</p> 
+      </div> 
+    </div> 
+    <div class="chart-card"> 
+      <canvas id="stockChart"></canvas> 
+    </div> </div> <!-- Add --> 
+    <div id="add" class="section hidden"> 
+      <div class="form-card"> 
+        <h2>Add / Remove Stock</h2> 
+        <input id="product" placeholder="Product Name"> 
+        <input id="sku" placeholder="SKU"> 
+        <input id="quantity" type="number" placeholder="Quantity"> 
+        <select id="type"> <option value="IN">Stock In</option> 
+          <option value="OUT">Stock Out</option> 
+        </select> <button id="submitBtn">Submit</button> 
+      </div> 
+    </div> <!-- Inventory --> 
+    <div id="view" class="section hidden"> 
+      <div class="table-card"> 
+        <div class="table-header"> 
+          <h2>Inventory</h2> 
+          <input id="search" placeholder="Search..."> 
+        </div> 
+        <button onclick="exportExcel()">Export Excel</button> 
+        <input type="file" id="importFile"> 
+        <button onclick="importExcel()">Import Excel</button> 
+        <table> 
+          <thead> 
+            <tr> 
+              <th>Product</th> 
+              <th>SKU</th> 
+              <th>Stock</th> 
+            </tr> 
+          </thead> 
+          <tbody id="tableBody"></tbody> 
+        </table> 
+      </div> 
+    </div> 
+  </div> 
+  <script type="module" src="script.js"></script> 
+</body> 
+</html>
